@@ -1,0 +1,40 @@
+.Sidebar-container{
+
+    display: flex;
+
+}
+
+.Bar{
+
+    position: fixed;
+    z-index: 50;
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+}
+
+.SideBar-Content {
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    flex: 1;
+}
+
+.bar-top{
+    width: 100vw;
+    top: 0;
+}
+
+.bar-left{
+    height: 100vh;
+    left: 0;
+}
+
+.bar-right{
+    height: 100vh;
+    right: 0;
+}
+
+.bar-bottom{
+    width: 100vw;
+    bottom: 0;
+}

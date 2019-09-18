@@ -1,0 +1,59 @@
+.Modal-form{
+
+    // position and size
+    position: fixed;
+    width: 900px;
+    padding: 60px;
+    background-color: white;
+    z-index: 200;
+    border-radius: 5px;
+
+    // center
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    // child
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    &:focus {
+        outline: none;
+    }
+
+}
+
+.Modal-signup {
+    @extend .Modal-form;
+}
+
+.Modal-login {
+    @extend .Modal-form;
+    padding: 20px 200px;
+}
+
+.Modal-Overlay-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($color: #1C2833 , $alpha: 0.8);
+    z-index: 150;
+}
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 0.18s ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
