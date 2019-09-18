@@ -24,3 +24,21 @@
     background-attachment: fixed;
     background-size: cover;
 }
+
+.empty-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border-color: #151b26;
+    border-width: 3px;
+    border-style: dashed;
+
+    &:hover{
+        cursor: pointer;
+        background-color: gray;
+    }
+
+    transition-duration: 0.3s;
+
+}
