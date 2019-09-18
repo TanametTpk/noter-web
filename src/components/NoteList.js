@@ -22,8 +22,8 @@ const NoteList = (props) => {
                     validUrl(note.content) ? 
                     <div style={{marginTop:"24px" , position:"relative"}}>
                         <div style={{ position:"absolute" , right:"20px" , top:"12px" , zIndex:"100"}}>
-                            <button style={{marginRight:"12px"}}>pin</button>
-                            <button>star</button>
+                            <button style={{marginRight:"12px" , backgroundColor:note.pin ? "green" : "red" }} onClick={()=>{ props.update({...note , pin:!note.pin}) }} >pin</button>
+                            <button style={{ backgroundColor:note.star ? "green" : "red" }} onClick={()=>{ props.update({...note , star:!note.star}) }}>star</button>
                         </div>
                         <ReactTinyLink
                             cardSize="small"
@@ -37,8 +37,8 @@ const NoteList = (props) => {
                     : 
                     <Card customStyle={{marginTop:"24px" , padding:"24px" , position:"relative"}}>
                         <div style={{position:"absolute" , top:"12px" , right:"20px"}}>
-                            <button style={{marginRight:"12px"}}>pin</button>
-                            <button>star</button>
+                            <button style={{marginRight:"12px" , backgroundColor:note.pin ? "green" : "red"}} onClick={()=>{ props.update({...note , pin:!note.pin}) }}>pin</button>
+                            <button style={{ backgroundColor:note.star ? "green" : "red" }} onClick={()=>{ props.update({...note , star:!note.star}) }}>star</button>
                         </div>
                         <p style={{paddingRight:"20%"}}>
                             {note.content}

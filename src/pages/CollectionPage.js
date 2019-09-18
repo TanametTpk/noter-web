@@ -1,10 +1,13 @@
-import React , {useState} from 'react'
+import React , {useState , useEffect} from 'react'
 import TitleInput from '../components/Input'
 import {Button} from '../components/Button'
 import Header , {HeaderItem , HeaderZone} from '../components/header'
 import {Link} from 'react-router-dom'
 import CollectionList from '../components/CollectionList'
 import Modal from 'react-modal'
+import { connect } from 'react-redux'
+import { getCollections , createCollection } from '../store/actions/collectionAction'
+import { logoutUser } from '../store/actions/userAction'
 
 const EmptyCard = (props) => {
 
@@ -64,14 +67,21 @@ const EmptyCard = (props) => {
 
 const CollectionPage = (props) => {
 
-    const logout = () => {
-        console.log("hello");
+    useEffect(() => {
+
+        props.getCollections(props.user.id)
         
+
+    } , [])
+
+    const logout = () => {
+        props.logoutUser()
+        props.history.push("/");
     }
 
-    const createCollection = (name) => {
+    const createCollection = async (name) => {
 
-        console.log(name);
+        props.createCollection(props.user.id , name)
 
     }
 
@@ -99,7 +109,7 @@ const CollectionPage = (props) => {
 
                     <EmptyCard action={createCollection} />
 
-                    <CollectionList collections={[{id:3 , name:"hello word"} , {id:1 , name:"gg"}]} />
+                    <CollectionList collections={props.collections} />
 
                 </div>
             </div>
@@ -107,4 +117,14 @@ const CollectionPage = (props) => {
     )
 }
 
-export default CollectionPage;
+const mapStateToProps = (state) => ({
+    user:state.user.item,
+    collections: state.collection.items
+})
+
+const mapDispatchToProps = {
+    getCollections , createCollection , logoutUser
+}
+
+
+export default connect(mapStateToProps , mapDispatchToProps)(CollectionPage);
