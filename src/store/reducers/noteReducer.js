@@ -16,7 +16,7 @@ export default function(state = initState , action){
         case CREATE_NOTE:
             return {
                 ...state,
-                items:[ ...state.items , action.payload ]
+                items:[action.payload  ,...state.items]
             }
         default:
             return state

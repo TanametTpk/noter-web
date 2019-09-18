@@ -1,12 +1,19 @@
-import React , {useState} from 'react'
+import React , {useState , useEffect} from 'react'
 import Header , {HeaderItem , HeaderZone} from '../components/header'
 import {Link} from 'react-router-dom'
 import Card from '../components/Card'
 import NoteList from '../components/NoteList'
+import { connect } from 'react-redux'
+import { createNote , getNotes } from '../store/actions/noteAction'
 
 const NotePage = (props) => {
 
+    useEffect(() => {
+        props.getNotes(props.user.id , props.match.params.id)
+    } , [])
+
     let [ note , setNote ] = useState("")
+    let [ isSort , setSort ] = useState(false)
 
     const logout = () => {
         console.log("hello");
@@ -14,13 +21,18 @@ const NotePage = (props) => {
     }
 
     const sortStar = () => {
-        console.log("star");
-        
+        setSort(!isSort)
     }
 
-    const takeNote = () => {
+    const takeNote = async () => {
         console.log(note);
+        
+        await props.createNote(props.user.id , props.match.params.id , note)
         setNote("")
+    }
+
+    const updateNote = (id , note) => {
+
     }
 
     return (
@@ -60,7 +72,7 @@ const NotePage = (props) => {
                     </Card>
 
                     <div style={{marginTop:"24px"}}>
-                        <NoteList notes={[{content:"https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url"} , {content:"kuy kuy kuy"}]} />
+                        <NoteList notes={props.notes} />
                     </div>
 
                 </div>
@@ -69,4 +81,14 @@ const NotePage = (props) => {
     )
 }
 
-export default NotePage;
+const mapStateToProps = (state) => ({
+    user:state.user.item,
+    notes:state.note.items
+})
+
+const mapDispatchToProps = {
+    createNote , getNotes
+}
+
+
+export default connect(mapStateToProps , mapDispatchToProps)(NotePage);
