@@ -2,11 +2,16 @@ import React from 'react'
 import Section from '../components/Section'
 import KaptuerHeader from '../components/custom/KaptuerHeader'
 import FacebookLogin from 'react-facebook-login';
+import { connect } from 'react-redux'
+import { createUser } from '../store/actions/userAction'
 
 const LoginPage = (props) => {
 
-    const responseFacebook = (response) => {
+    const responseFacebook = async (response) => {
         console.log(response);
+        let user = await props.createUser(response);
+        console.log(user);
+        
         props.history.push("/collection");
     }
 
@@ -41,4 +46,8 @@ const LoginPage = (props) => {
     )
 }
 
-export default LoginPage;
+const mapDispatchToProps = {
+    createUser
+}
+
+export default connect(null, mapDispatchToProps)(LoginPage)
