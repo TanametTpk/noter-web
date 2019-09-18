@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom'
 import Card from '../components/Card'
 import NoteList from '../components/NoteList'
 import { connect } from 'react-redux'
-import { createNote , getNotes } from '../store/actions/noteAction'
+import { createNote , getNotes , updateNote } from '../store/actions/noteAction'
+import { logoutUser } from '../store/actions/userAction'
 
 const NotePage = (props) => {
 
@@ -14,10 +15,19 @@ const NotePage = (props) => {
 
     let [ note , setNote ] = useState("")
     let [ isSort , setSort ] = useState(false)
+    let notes = props.notes.filter((note) => {
+        if(isSort){
+            return note.star
+        }
+        return true
+    })
+
+    let pins = notes.filter((note) => note.pin)
+    notes = [ ...pins , ...notes.filter((note) => !note.pin)]
 
     const logout = () => {
-        console.log("hello");
-        
+        props.logoutUser()
+        props.history.push("/");
     }
 
     const sortStar = () => {
@@ -25,14 +35,14 @@ const NotePage = (props) => {
     }
 
     const takeNote = async () => {
-        console.log(note);
-        
         await props.createNote(props.user.id , props.match.params.id , note)
         setNote("")
     }
 
-    const updateNote = (id , note) => {
-
+    const updateNote = (note) => {
+        console.log(note);
+        
+        props.updateNote(props.user.id , props.match.params.id , note)
     }
 
     return (
@@ -47,7 +57,7 @@ const NotePage = (props) => {
 
                 <HeaderZone position={'right'} size={4} paddingRight="50px">
                     <HeaderItem justifyContent={"start"} >
-                        <Link to="/collection" onClick={logout} style={{textDecoration:"none" , color:"white" , paddingRight:"30px"}}>collections</Link>
+                        <Link to="/collection" style={{textDecoration:"none" , color:"white" , paddingRight:"30px"}}>collections</Link>
                     </HeaderItem>
                     <HeaderItem justifyContent={"start"} >
                         <Link to="/" onClick={logout} style={{textDecoration:"none" , color:"white"}}>logout</Link>
@@ -58,7 +68,7 @@ const NotePage = (props) => {
 
             <div style={{ padding:"8% 10% 0px" , minHeight:"100vh" , backgroundColor:"#f6f8f9"}}>
                 <h1>Notes</h1>
-                <p>sort by <button onClick={sortStar}>star</button> </p>
+                <p>sort by <button style={{ backgroundColor:isSort ? "green" : "red" }} onClick={sortStar}>star</button> </p>
                 <div style={{display:"flex" , flexDirection:"column" }}>
 
                     <Card customStyle={{ width:"100%" , minHeight:"180px" , padding:"0px 24px 12px" }}>
@@ -72,7 +82,7 @@ const NotePage = (props) => {
                     </Card>
 
                     <div style={{marginTop:"24px"}}>
-                        <NoteList notes={props.notes} />
+                        <NoteList notes={notes} update={updateNote} />
                     </div>
 
                 </div>
@@ -87,7 +97,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    createNote , getNotes
+    createNote , getNotes , logoutUser , updateNote
 }
 
 

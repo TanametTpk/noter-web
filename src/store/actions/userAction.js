@@ -19,3 +19,12 @@ export const createUser = (user) => async dispatch => {
     return res.data
 
 }
+
+export const logoutUser = () => async dispatch => {
+
+    dispatch({
+        type: CREATE_USER,
+        payload: {}
+    })
+
+}

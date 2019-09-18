@@ -7,6 +7,7 @@ import CollectionList from '../components/CollectionList'
 import Modal from 'react-modal'
 import { connect } from 'react-redux'
 import { getCollections , createCollection } from '../store/actions/collectionAction'
+import { logoutUser } from '../store/actions/userAction'
 
 const EmptyCard = (props) => {
 
@@ -74,8 +75,8 @@ const CollectionPage = (props) => {
     } , [])
 
     const logout = () => {
-        console.log("hello");
-        
+        props.logoutUser()
+        props.history.push("/");
     }
 
     const createCollection = async (name) => {
@@ -122,7 +123,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getCollections , createCollection
+    getCollections , createCollection , logoutUser
 }
 
 

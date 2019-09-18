@@ -8,10 +8,7 @@ import { createUser } from '../store/actions/userAction'
 const LoginPage = (props) => {
 
     const responseFacebook = async (response) => {
-        console.log(response);
         let user = await props.createUser(response);
-        console.log(user);
-        
         props.history.push("/collection");
     }
 
