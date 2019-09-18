@@ -1,8 +1,24 @@
-import React from 'react'
+import React , {useState} from 'react'
 import Card from '../components/Card'
 import Header , {HeaderItem , HeaderZone} from '../components/header'
 import {Link} from 'react-router-dom'
 import CollectionList from '../components/CollectionList'
+
+const EmptyCard = (props) => {
+
+    let [isOpen , setOpen] = useState(false)
+
+    return(
+        <div>
+
+            <div className="empty-card">
+                <h3>Create new Collection</h3>
+            </div>
+
+        </div>
+    )
+
+}
 
 const CollectionPage = (props) => {
 
@@ -36,6 +52,8 @@ const CollectionPage = (props) => {
                     <div className="empty-card">
                         <h3>Create new Collection</h3>
                     </div>
+
+                    <EmptyCard />
 
                     <CollectionList collections={[{id:3 , name:"hello word"} , {id:1 , name:"gg"}]} />
 
