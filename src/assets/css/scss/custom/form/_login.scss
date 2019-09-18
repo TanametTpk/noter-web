@@ -1,0 +1,26 @@
+$login_form_font_size: 1.2rem;
+$login_form_border_radius: 5px;
+
+.Login-form{
+
+    width: 100%;
+    display: grid;
+    justify-content: stretch;
+    grid-gap: 20px;
+    margin-top: 25px;
+    text-align: center;
+
+    // button{
+    //     border-radius: $login_form_border_radius;
+    //     padding: 10px;
+    //     font-size: $login_form_font_size;
+    //     background-color: $lightSecondaryColorTheme;
+    //     color:$lighPrimaryColorTheme;
+    //     font-weight: 800;
+
+    //     &:focus{
+    //         outline: none;
+    //     }
+    // }
+
+}

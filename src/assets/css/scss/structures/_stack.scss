@@ -1,0 +1,18 @@
+@mixin stack($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.HStack-container{
+
+    @include stack(row);
+
+}
+
+.VStack-container {
+
+    @include stack(column);
+
+}
