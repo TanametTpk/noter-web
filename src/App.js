@@ -3,6 +3,7 @@ import { BrowserRouter as Router , Route } from 'react-router-dom';
 import Page from './pages'
 import store from './store'
 import { Provider } from 'react-redux'
+import './assets/css/main.css'
 
 function App() {
   return (

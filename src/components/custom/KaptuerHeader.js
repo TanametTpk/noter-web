@@ -50,16 +50,18 @@ const ButtonList = (props) => {
 
 const KaptuerHeader = (props) => {
     return(
-        <Header height="80px" backgroundColor="white" isFloat={true} shadow={props.shadow} >
+        <Header height="80px" backgroundColor="#151b26" isFloat={true} shadow={props.shadow} >
 
             <HeaderZone paddingLeft="50px">
                 <HeaderItem justifyContent={"start"} >
-                    <CircleImage src={props.logo} alt={"logo"}/>
+                    <h1>Noter</h1>
                 </HeaderItem>
             </HeaderZone>
 
             <HeaderZone position={'right'} size={4} paddingRight="50px">
-                <ButtonList action={props.action} buttons={props.buttons} />
+                <HeaderItem justifyContent={"start"} >
+                    {props.children}
+                </HeaderItem>
             </HeaderZone>
 
         </Header>
