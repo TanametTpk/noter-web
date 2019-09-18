@@ -1,2 +1,7 @@
-export const FETCH_POST = "FETCH_POST"
-export const ADD_POST = "ADD_POST"
+export const CREATE_USER = "CREATE_USER"
+
+export const CREATE_COLLECTION = "CREATE_COLLECTION"
+export const GET_COLLECTION = "GET_COLLECTION"
+
+export const CREATE_NOTE = "CREATE_NOTE"
+export const GET_NOTE = "GET_NOTE"

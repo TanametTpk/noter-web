@@ -1,4 +1,4 @@
-import { GET_NOTE , CREATE_NOTE } from '../types'
+import { GET_COLLECTION , CREATE_COLLECTION } from '../types'
 
 const initState = {
     items:[]
@@ -7,13 +7,13 @@ const initState = {
 export default function(state = initState , action){
 
     switch (action.type) {
-        case GET_NOTE:
+        case GET_COLLECTION:
             return {
                 ...state,
                 items:action.payload
             }
     
-        case CREATE_NOTE:
+        case CREATE_COLLECTION:
             return {
                 ...state,
                 items:[ ...state.items , action.payload ]

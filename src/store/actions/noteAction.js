@@ -1,9 +1,18 @@
-import { FETCH_POST } from '../types'
+import { GET_NOTE , CREATE_NOTE } from '../types'
+import axios from 'axios'
 
-export const fetchPosts = () => dispatch => {
+export const getNotes = () => async dispatch => {
     //do something
     dispatch({
-        type: FETCH_POST,
+        type: GET_NOTE,
+        payload: ["1" , "2" , "3"]
+    })
+}
+
+export const createNote = () => async dispatch => {
+    //do something
+    dispatch({
+        type: CREATE_NOTE,
         payload: ["1" , "2" , "3"]
     })
 }
