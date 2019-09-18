@@ -1,0 +1,31 @@
+@import "./scss/global/index";
+@import "./scss/components/index";
+@import "./scss/_button";
+@import "./scss/_header";
+@import "./scss/_image";
+@import "./scss/_section";
+@import "./scss/_dropdown";
+@import "./scss/_input";
+@import "./scss/modal";
+@import "./scss/structures/index";
+@import "./scss/custom/index";
+@import "./scss/sidebar";
+
+@mixin load_font($name , $weight , $directory) {
+    font-family: $name;
+    font-style: normal;
+    font-weight: $weight;
+    src: url($directory) format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+    @include load_font('Mirt', 400, '../fonts/Mitr-Regular.ttf');
+ }
+
+@font-face {
+    @include load_font('Mirt', 700, '../fonts/Mitr-Bold.ttf');
+}
+
+body{
+    font-family: 'Mirt';
+}

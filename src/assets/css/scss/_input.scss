@@ -1,0 +1,85 @@
+
+$inputPaddingV: 0.8rem;
+$inputPaddingH: 1.6rem;
+$transitionDuration: 300ms;
+$inputFontSize: 1.2rem;
+$inputLineHeight: 1.8;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .Input {
+    
+        position: relative;
+        width: 100%;
+        
+        .Input-text {
+            display: block;
+            margin: 0;
+            padding: $inputPaddingV $inputPaddingH;
+            color: inherit;
+            width: 100%;
+            font-family: inherit;
+            font-size: $inputFontSize;
+            font-weight: inherit;
+            line-height: $inputLineHeight;
+            border: none;
+            border-radius: 0.4rem;
+            transition: box-shadow $transitionDuration;
+            border-width: 2px;
+            border-color: $lightSecondaryColorTheme;
+            border-style: solid;
+        }
+        
+        .Input-text::placeholder {
+
+            color: #B0BEC5;
+        
+            &:focus{
+                outline: none;
+                box-shadow: 0.0rem 0.0rem 0.8rem $lightSecondaryColorTheme;
+            }
+        
+        }
+        
+        .Input-text:focus {
+            outline: none;
+            box-shadow: 0.0rem 0.0rem 0.8rem $lightSecondaryColorTheme;
+        }
+    
+    }
+
+}
+
+$login_form_font_size: 1.2rem;
+$login_form_border_radius: 5px;
+
+.TitleInput-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: start;
+    grid-gap: 5px;
+
+    input {
+        padding: 10px;
+        font-size: $login_form_font_size;
+        border-radius: $login_form_border_radius;
+        border-style: solid;
+        border-width: 2px;
+        border-color: #e0e6e8;
+
+        &:focus{
+            outline: none;
+        }
+
+    }
+
+}
