@@ -1,16 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router , Route } from 'react-router-dom';
 import Page from './pages'
+import store from './store'
+import { Provider } from 'react-redux'
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Route exact path="/" component={Page.LoginPage} />
-        <Route path="/collection" component={Page.CollectionPage} />
-        <Route path="/note/:id" component={Page.NotePage} />
-      </Router>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Router>
+          <Route exact path="/" component={Page.LoginPage} />
+          <Route path="/collection" component={Page.CollectionPage} />
+          <Route path="/note/:id" component={Page.NotePage} />
+        </Router>
+      </div>
+    </Provider>
   );
 }
 
