@@ -7,12 +7,18 @@ export const getNotes = () => async dispatch => {
         type: GET_NOTE,
         payload: ["1" , "2" , "3"]
     })
+
+    return
+
 }
 
-export const createNote = () => async dispatch => {
+export const createNote = (user , collection , content) => async dispatch => {
     //do something
     dispatch({
         type: CREATE_NOTE,
         payload: ["1" , "2" , "3"]
     })
+
+    return
+
 }
