@@ -2,7 +2,6 @@ import React from 'react'
 import Section from '../components/Section'
 import KaptuerHeader from '../components/custom/KaptuerHeader'
 import FacebookLogin from 'react-facebook-login';
-import VStack , {HStack} from '../components/Stack'
 
 const LoginPage = (props) => {
 

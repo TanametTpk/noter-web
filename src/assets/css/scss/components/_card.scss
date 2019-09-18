@@ -8,6 +8,10 @@
     align-items: stretch;
     overflow: hidden;
 
+    &:hover{
+        cursor: pointer;
+    }
+
     .card-column{
 
         display: flex;
