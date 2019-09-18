@@ -34,6 +34,7 @@ const EmptyCard = (props) => {
     const create = () => {
         if (props.action) props.action(name)
         setOpen(false)
+        setName("")
     }
 
     return(
@@ -71,7 +72,6 @@ const CollectionPage = (props) => {
     const createCollection = (name) => {
 
         console.log(name);
-        
 
     }
 
