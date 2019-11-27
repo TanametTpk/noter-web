@@ -4,7 +4,7 @@ import URL from '../../configs/api'
 
 export const getNotes = (user , collection) => async dispatch => {
 
-    let res = await axios.get(URL + `/notes/${user}/${collection}?sort="date"` )
+    let res = await axios.get(URL + `/notes/${user}/${collection}?sort=date` )
 
     //do something
     dispatch({
