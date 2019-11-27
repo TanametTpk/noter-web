@@ -1,4 +1,4 @@
-import { GET_NOTE , CREATE_NOTE , UPDATE_NOTE } from '../types'
+import { GET_NOTE , CREATE_NOTE , UPDATE_NOTE, DELETE_NOTE } from '../types'
 
 const initState = {
     items:[]
@@ -32,6 +32,13 @@ export default function(state = initState , action){
                 ...state,
                 items:updateState
             }
+
+        case DELETE_NOTE:
+            return {
+                ...state,
+                items:[ ...state.items.filter((i) => i.id !== action.payload.id) ]
+            }
+
         default:
             return state
     }

@@ -695,7 +695,8 @@ a.button.primary:hover {
 }
 
 .note-button {
-  background-color: gray;
+  color: white;
+  font-weight: bold;
   width: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -708,6 +709,10 @@ a.button.primary:hover {
           justify-content: center;
   border-radius: 50px;
   height: 100%;
+  background: linear-gradient(77.52deg, #ED765E 1.63%, #FEA858 96.86%);
+  -webkit-box-shadow: 0px 2px 4px rgba(252, 110, 81, 0.14), 0px 4px 5px rgba(252, 110, 81, 0.12), 0px 1px 10px rgba(252, 110, 81, 0.2);
+          box-shadow: 0px 2px 4px rgba(252, 110, 81, 0.14), 0px 4px 5px rgba(252, 110, 81, 0.12), 0px 1px 10px rgba(252, 110, 81, 0.2);
+  border-radius: 100px;
 }
 
 textarea {

@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "lodash": "^4.17.15",
     "react": "^16.9.0",
+    "react-contextmenu": "^2.13.0",
     "react-dom": "^16.9.0",
     "react-facebook-login": "^4.1.1",
     "react-modal": "^3.10.1",
@@ -17,6 +19,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "dev": "chmod +x ./env.sh && ./env.sh && cp env-config.js ./public/ && react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -1,4 +1,4 @@
-import { GET_COLLECTION , CREATE_COLLECTION } from '../types'
+import { GET_COLLECTION , CREATE_COLLECTION, DELETE_COLLECTION } from '../types'
 
 const initState = {
     items:[]
@@ -18,6 +18,13 @@ export default function(state = initState , action){
                 ...state,
                 items:[ ...state.items , action.payload ]
             }
+
+        case DELETE_COLLECTION:
+            return {
+                ...state,
+                items:[ ...state.items.filter((i) => i.id !== action.payload.id) ]
+            }
+
         default:
             return state
     }
