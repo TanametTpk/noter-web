@@ -4,8 +4,13 @@ import {Link} from 'react-router-dom'
 import Card from '../components/Card'
 import NoteList from '../components/NoteList'
 import { connect } from 'react-redux'
-import { createNote , getNotes , updateNote } from '../store/actions/noteAction'
+import { createNote , getNotes , updateNote, deleteNote } from '../store/actions/noteAction'
 import { logoutUser } from '../store/actions/userAction'
+import { deleteCollection } from '../store/actions/collectionAction'
+import StarButton from '../components/StarButton'
+import DateButton from '../components/DateButton'
+import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg'
+import * as _ from 'lodash'
 
 const NotePage = (props) => {
 
@@ -15,6 +20,7 @@ const NotePage = (props) => {
 
     let [ note , setNote ] = useState("")
     let [ isSort , setSort ] = useState(false)
+    let [ isSortByDate , setSortByDate ] = useState(false)
     let notes = props.notes.filter((note) => {
         if(isSort){
             return note.star
@@ -25,6 +31,10 @@ const NotePage = (props) => {
     let pins = notes.filter((note) => note.pin)
     notes = [ ...pins , ...notes.filter((note) => !note.pin)]
 
+    if (isSortByDate){
+        notes = _.sortBy(notes, ["created_at"])
+    }
+
     const logout = () => {
         props.logoutUser()
         props.history.push("/");
@@ -34,17 +44,24 @@ const NotePage = (props) => {
         setSort(!isSort)
     }
 
+    const sortDate = () => {
+        setSortByDate(!isSortByDate)
+    }
+
     const takeNote = async () => {
         await props.createNote(props.user.id , props.match.params.id , note)
         setNote("")
     }
 
     const updateNote = (note) => {
-        console.log(note);
-        
         props.updateNote(props.user.id , props.match.params.id , note)
     }
 
+    const deleteCollection = () => {
+        props.deleteCollection(props.match.params.id)
+        props.history.goBack()
+    }
+    
     return (
         <div>
             <Header height="80px" backgroundColor="#151b26" isFloat={true} shadow={true} >
@@ -65,10 +82,16 @@ const NotePage = (props) => {
                 </HeaderZone>
 
             </Header>
-
             <div style={{ padding:"8% 10% 0px" , minHeight:"100vh" , backgroundColor:"#f6f8f9"}}>
                 <h1>Notes</h1>
-                <p>sort by <button style={{ backgroundColor:isSort ? "green" : "red" }} onClick={sortStar}>star</button> </p>
+                <p style={{display: "flex" , justifyContent:"space-between"}} >
+                    <div style={{display: "flex"}}>
+                        <div>sort by </div>
+                        <StarButton onClick={sortStar} isPress={isSort} />
+                        <DateButton onClick={sortDate} isPress={isSortByDate} />
+                    </div>
+                    <div><DeleteIcon onClick={deleteCollection} style={{width:"28px", height:"28px", cursor:"pointer"}} /></div>
+                </p>
                 <div style={{display:"flex" , flexDirection:"column" }}>
 
                     <Card customStyle={{ width:"100%" , minHeight:"180px" , padding:"0px 24px 12px" }}>
@@ -81,8 +104,8 @@ const NotePage = (props) => {
                         </div>
                     </Card>
 
-                    <div style={{marginTop:"24px"}}>
-                        <NoteList notes={notes} update={updateNote} />
+                    <div style={{margin:"24px 0"}}>
+                        <NoteList deleteNote={(note) => props.deleteNote(props.user.id , props.match.params.id, note)} notes={notes} update={updateNote} />
                     </div>
 
                 </div>
@@ -97,7 +120,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    createNote , getNotes , logoutUser , updateNote
+    createNote , getNotes , logoutUser , updateNote, deleteNote, deleteCollection
 }
 
 

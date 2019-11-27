@@ -1,4 +1,4 @@
-import { GET_COLLECTION , CREATE_COLLECTION } from '../types'
+import { GET_COLLECTION , CREATE_COLLECTION, DELETE_COLLECTION } from '../types'
 import axios from 'axios'
 import URL from '../../configs/api'
 
@@ -26,6 +26,22 @@ export const createCollection = (user , name) => async dispatch => {
     //do something
     dispatch({
         type: CREATE_COLLECTION,
+        payload: res.data
+    })
+
+    return res.data
+
+}
+
+export const deleteCollection = (id) => async dispatch => {
+
+    let res = await axios.post(URL + "/collections/del" , {
+        id
+    })
+
+    //do something
+    dispatch({
+        type: DELETE_COLLECTION,
         payload: res.data
     })
 
